@@ -3,6 +3,7 @@ package com.blossom.tech.product.service.domain.core.entity;
 import com.blossom.tech.domain.entity.BaseEntity;
 import com.blossom.tech.domain.exception.DomainException;
 import com.blossom.tech.domain.valueobject.Money;
+import com.blossom.tech.product.service.domain.core.cosntant.ProductDomainConstant;
 import com.blossom.tech.product.service.domain.core.exception.ProductDomainException;
 
 import java.util.List;
@@ -68,13 +69,13 @@ public class Product extends BaseEntity<UUID> {
 
     private void validatePrice() {
         if (!price.isGreaterThanZero())
-            throw new DomainException("The price must be greater than zero!");
+            throw new ProductDomainException(ProductDomainConstant.PRICE_GREATER_THAN_ZERO);
 
     }
 
     private void validateStock() {
         if (stock < 0)
-            throw new DomainException("The stock must be greater of equal than zero!");
+            throw new ProductDomainException(ProductDomainConstant.STOCK_GREATER_THAN_EQUALS_ZERO);
 
     }
 
@@ -84,12 +85,12 @@ public class Product extends BaseEntity<UUID> {
 
     private void validateInitialProduct() {
         if (!isIdNull())
-            throw new ProductDomainException("The order is wrong to be initialized");
+            throw new ProductDomainException(ProductDomainConstant.WRONG_STATE_TO_INITIALIZE);
     }
 
     private void validateExistingProduct() {
         if (isIdNull())
-            throw new ProductDomainException("The id is null");
+            throw new ProductDomainException(ProductDomainConstant.ID_IS_NULL);
 
     }
 

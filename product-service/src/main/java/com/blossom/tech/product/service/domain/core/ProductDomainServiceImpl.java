@@ -1,5 +1,6 @@
 package com.blossom.tech.product.service.domain.core;
 
+import com.blossom.tech.product.service.domain.core.cosntant.ProductDomainConstant;
 import com.blossom.tech.product.service.domain.core.entity.Product;
 import com.blossom.tech.product.service.domain.core.exception.ProductDomainException;
 
@@ -15,7 +16,7 @@ public class ProductDomainServiceImpl implements ProductDomainService {
         try {
             product.validateProduct();
             product.initializeProduct();
-            log.info(String.format("Product with id: %s was initialized", product.getId()));
+            log.info(String.format(ProductDomainConstant.PRODUCT_INITIALIZED, product.getId()));
         } catch (ProductDomainException exception) {
             log.severe(exception.getMessage());
             throw exception;

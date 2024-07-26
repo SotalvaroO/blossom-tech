@@ -17,6 +17,7 @@ public class CreateProduct implements Request<ProductResponse> {
     private final String description;
     private final Double price;
     private final List<CategoryDisplay> categories;
+    private final Long stock;
 
 
 }
