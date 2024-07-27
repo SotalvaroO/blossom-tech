@@ -18,6 +18,10 @@ public class ProductTestConstant {
     public static String FIRST_CATEGORY = "Home Appliance";
     public static String SECOND_CATEGORY = "Technology";
 
+    public static String UPDATED_PRODUCT_NAME = "Updated Macbook Pro max M2";
+    public static String UPDATED_PRODUCT_DESCRIPTION = "It's a Macbook updated";
+    public static Long UPDATED_STOCK = 25L;
+    public static Double UPDATED_PRICE = 35000.0;
 
 
 }

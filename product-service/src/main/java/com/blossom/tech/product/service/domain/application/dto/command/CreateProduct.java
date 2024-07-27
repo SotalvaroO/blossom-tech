@@ -1,7 +1,7 @@
 package com.blossom.tech.product.service.domain.application.dto.command;
 
 import com.blossom.tech.domain.mediator.Request;
-import com.blossom.tech.product.service.domain.application.dto.CategoryDisplay;
+import com.blossom.tech.product.service.domain.application.dto.response.CategoryDisplay;
 import com.blossom.tech.product.service.domain.application.dto.response.ProductResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

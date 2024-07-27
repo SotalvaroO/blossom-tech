@@ -1,4 +1,4 @@
-package com.blossom.tech.product.service.domain.application.dto;
+package com.blossom.tech.product.service.domain.application.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

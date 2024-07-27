@@ -1,7 +1,5 @@
 package com.blossom.tech.product.service.domain.core.entity;
 
-import com.blossom.tech.domain.entity.BaseEntity;
-
 import java.util.UUID;
 
 public class Category {

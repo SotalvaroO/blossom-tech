@@ -4,7 +4,6 @@ import com.blossom.tech.product.service.domain.core.cosntant.ProductDomainConsta
 import com.blossom.tech.product.service.domain.core.entity.Product;
 import com.blossom.tech.product.service.domain.core.exception.ProductDomainException;
 
-import java.util.UUID;
 import java.util.logging.Logger;
 
 public class ProductDomainServiceImpl implements ProductDomainService {
@@ -26,7 +25,7 @@ public class ProductDomainServiceImpl implements ProductDomainService {
     @Override
     public void updateProduct(Product createdProduct, Product updatedProduct) {
         try {
-            createdProduct.validateProductToUpdate();
+            updatedProduct.validateProductToUpdate();
             createdProduct.updateProduct(updatedProduct);
         } catch (ProductDomainException exception) {
             log.severe(exception.getMessage());

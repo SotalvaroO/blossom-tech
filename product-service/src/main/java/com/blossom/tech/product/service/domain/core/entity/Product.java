@@ -1,7 +1,6 @@
 package com.blossom.tech.product.service.domain.core.entity;
 
 import com.blossom.tech.domain.entity.BaseEntity;
-import com.blossom.tech.domain.exception.DomainException;
 import com.blossom.tech.domain.valueobject.Money;
 import com.blossom.tech.product.service.domain.core.cosntant.ProductDomainConstant;
 import com.blossom.tech.product.service.domain.core.exception.ProductDomainException;

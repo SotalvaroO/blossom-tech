@@ -4,6 +4,7 @@ import com.blossom.tech.domain.mediator.RequestHandler;
 import com.blossom.tech.product.service.domain.application.dto.query.FindProductById;
 import com.blossom.tech.product.service.domain.application.dto.response.ProductDetailResponse;
 import com.blossom.tech.product.service.domain.application.mapper.ProductDomainMapper;
+import com.blossom.tech.product.service.domain.core.cosntant.ProductDomainConstant;
 import com.blossom.tech.product.service.domain.core.exception.ProductNotFoundException;
 import com.blossom.tech.product.service.domain.core.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -21,20 +22,19 @@ public class FindProductByIdHandler implements RequestHandler<FindProductById, P
 
     @Override
     public ProductDetailResponse handle(FindProductById request) {
-        ProductDetailResponse productDetailResponse = productRepository
+
+        return productRepository
                 .findById(request.getId())
                 .map(product -> {
-                    log.info(String.format("Product with id: %s was found", product.getId()));
+                    log.info(String.format(ProductDomainConstant.PRODUCT_FOUND, product.getId()));
                     return productDomainMapper.productToProductDetailResponse(product);
                 })
                 .orElseThrow(() -> {
-                            log.error(String.format("Product with id: %s was found", request.getId()));
+                            log.error(String.format(ProductDomainConstant.PRODUCT_NOT_FOUND, request.getId()));
                             return new ProductNotFoundException(
-                                    String.format("Product with id: %s was not found", request.getId())
+                                    String.format(ProductDomainConstant.PRODUCT_NOT_FOUND, request.getId())
                             );
                         }
                 );
-
-        return productDetailResponse;
     }
 }

@@ -4,6 +4,7 @@ import com.blossom.tech.domain.mediator.RequestHandler;
 import com.blossom.tech.product.service.domain.application.dto.command.DeleteProductById;
 import com.blossom.tech.product.service.domain.application.dto.response.ProductResponse;
 import com.blossom.tech.product.service.domain.application.mapper.ProductDomainMapper;
+import com.blossom.tech.product.service.domain.core.cosntant.ProductDomainConstant;
 import com.blossom.tech.product.service.domain.core.entity.Product;
 import com.blossom.tech.product.service.domain.core.exception.ProductNotFoundException;
 import com.blossom.tech.product.service.domain.core.repository.ProductRepository;
@@ -24,10 +25,10 @@ public class DeleteProductByIdHandler implements RequestHandler<DeleteProductByI
     public ProductResponse handle(DeleteProductById request) {
         Product deletedProduct = productRepository.deleteById(request.getId())
                 .orElseThrow(() -> {
-                    log.error(String.format(String.format("Product with id: %s was not found", request.getId())));
-                    return new ProductNotFoundException(String.format("Product with id: %s was not found", request.getId()));
+                    log.error(String.format(String.format(ProductDomainConstant.PRODUCT_NOT_FOUND, request.getId())));
+                    return new ProductNotFoundException(String.format(ProductDomainConstant.PRODUCT_NOT_FOUND, request.getId()));
                 });
-        log.info(String.format("Product with id: %s was successfully updated", deletedProduct.getId()));
+        log.info(String.format(ProductDomainConstant.PRODUCT_SUCCESSFULLY_DELETED, deletedProduct.getId()));
         return productDomainMapper.productToProductResponse(deletedProduct);
     }
 }

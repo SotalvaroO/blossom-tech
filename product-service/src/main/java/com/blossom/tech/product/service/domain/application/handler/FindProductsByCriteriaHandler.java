@@ -5,6 +5,7 @@ import com.blossom.tech.domain.valueobject.Money;
 import com.blossom.tech.product.service.domain.application.dto.query.FindProductsByCriteria;
 import com.blossom.tech.product.service.domain.application.dto.response.ProductResponse;
 import com.blossom.tech.product.service.domain.application.mapper.ProductDomainMapper;
+import com.blossom.tech.product.service.domain.core.cosntant.ProductDomainConstant;
 import com.blossom.tech.product.service.domain.core.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,7 +35,7 @@ public class FindProductsByCriteriaHandler implements RequestHandler<FindProduct
                 .stream().map(
                         productDomainMapper::productToProductResponse).collect(Collectors.toList()
                 );
-        log.info("Products were queried successfully");
+        log.info(ProductDomainConstant.PRODUCT_QUERIED_SUCCESSFULLY);
         return products;
 
     }
