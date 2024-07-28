@@ -4,6 +4,7 @@ import com.blossom.tech.product.service.domain.application.dto.command.CreatePro
 import com.blossom.tech.product.service.domain.application.dto.command.UpdateProduct;
 import com.blossom.tech.product.service.domain.application.dto.response.ProductDetailResponse;
 import com.blossom.tech.product.service.domain.application.dto.response.ProductResponse;
+import com.blossom.tech.product.service.domain.application.dto.response.ProductsResponse;
 import com.blossom.tech.product.service.domain.core.entity.Product;
 
 public interface ProductDomainMapper {
@@ -14,4 +15,6 @@ public interface ProductDomainMapper {
     ProductDetailResponse productToProductDetailResponse(Product product);
 
     Product updateProductToProduct(UpdateProduct updateProduct);
+
+    ProductsResponse productToProductsResponse(Product product);
 }

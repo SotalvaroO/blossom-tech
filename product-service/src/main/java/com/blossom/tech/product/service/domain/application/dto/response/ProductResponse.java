@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @Builder
 @Getter
 public class ProductResponse {
     private final String name;
     private final String description;
-    private final Double price;
+    private final BigDecimal price;
     private final Long stock;
 }

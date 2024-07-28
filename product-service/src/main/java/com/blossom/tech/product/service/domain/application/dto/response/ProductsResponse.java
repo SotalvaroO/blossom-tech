@@ -5,15 +5,15 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
-@Getter
 @Builder
-public class ProductDetailResponse {
+@Getter
+public class ProductsResponse {
+    private final UUID id;
     private final String name;
     private final String description;
     private final BigDecimal price;
-    private final List<CategoryDisplay> categories;
     private final Long stock;
 }

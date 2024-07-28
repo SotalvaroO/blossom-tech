@@ -1,13 +1,14 @@
 package com.blossom.tech.product.service;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 public class ProductTestConstant {
 
     public static UUID PRODUCT_ID = UUID.fromString("8a090348-f4ad-425b-9a80-79f608c81409");
     public static UUID WRONG_PRODUCT_ID = UUID.fromString("91061601-b32d-40a3-891a-0a1932bb4c72");
-    public static Double PRICE = 30000.0;
-    public static Double WRONG_PRICE = -30000.0;
+    public static BigDecimal PRICE = new BigDecimal("30000.0");
+    public static BigDecimal WRONG_PRICE = new BigDecimal("-30000.0");
     public static Long STOCK = 20L;
     public static Long WRONG_STOCK = -20L;
     public static String PRODUCT_NAME = "Macbook Pro max M2";
@@ -21,7 +22,7 @@ public class ProductTestConstant {
     public static String UPDATED_PRODUCT_NAME = "Updated Macbook Pro max M2";
     public static String UPDATED_PRODUCT_DESCRIPTION = "It's a Macbook updated";
     public static Long UPDATED_STOCK = 25L;
-    public static Double UPDATED_PRICE = 35000.0;
+    public static BigDecimal UPDATED_PRICE = new BigDecimal("35000.0");
 
 
 }

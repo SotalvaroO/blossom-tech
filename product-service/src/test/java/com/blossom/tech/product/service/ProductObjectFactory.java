@@ -9,6 +9,7 @@ import com.blossom.tech.product.service.domain.application.dto.query.FindProduct
 import com.blossom.tech.product.service.domain.application.dto.response.CategoryDisplay;
 import com.blossom.tech.product.service.domain.application.dto.response.ProductDetailResponse;
 import com.blossom.tech.product.service.domain.application.dto.response.ProductResponse;
+import com.blossom.tech.product.service.domain.application.dto.response.ProductsResponse;
 import com.blossom.tech.product.service.domain.core.entity.Category;
 import com.blossom.tech.product.service.domain.core.entity.Product;
 
@@ -34,12 +35,19 @@ public class ProductObjectFactory {
     public static Product product = Product.builder()
             .name(ProductTestConstant.PRODUCT_NAME)
             .description(ProductTestConstant.PRODUCT_DESCRIPTION)
-            .price(new Money(BigDecimal.valueOf(ProductTestConstant.PRICE)))
+            .price(new Money(ProductTestConstant.PRICE))
             .categories(List.of(firstCategory, secondCategory))
             .stock(ProductTestConstant.STOCK)
             .build();
 
     public static ProductResponse response = ProductResponse.builder()
+            .name(ProductTestConstant.PRODUCT_NAME)
+            .description(ProductTestConstant.PRODUCT_DESCRIPTION)
+            .price(ProductTestConstant.PRICE)
+            .stock(ProductTestConstant.STOCK)
+            .build();
+    public static ProductsResponse pResponse = ProductsResponse.builder()
+            .id(ProductTestConstant.PRODUCT_ID)
             .name(ProductTestConstant.PRODUCT_NAME)
             .description(ProductTestConstant.PRODUCT_DESCRIPTION)
             .price(ProductTestConstant.PRICE)
@@ -60,7 +68,7 @@ public class ProductObjectFactory {
     public static Product wrongPriceProduct = Product.builder()
             .name(ProductTestConstant.PRODUCT_NAME)
             .description(ProductTestConstant.PRODUCT_DESCRIPTION)
-            .price(new Money(BigDecimal.valueOf(ProductTestConstant.WRONG_PRICE)))
+            .price(new Money(ProductTestConstant.WRONG_PRICE))
             .categories(List.of(firstCategory, secondCategory))
             .stock(ProductTestConstant.STOCK)
             .build();
@@ -79,7 +87,7 @@ public class ProductObjectFactory {
     public static Product wrongStockProduct = Product.builder()
             .name(ProductTestConstant.PRODUCT_NAME)
             .description(ProductTestConstant.PRODUCT_DESCRIPTION)
-            .price(new Money(BigDecimal.valueOf(ProductTestConstant.PRICE)))
+            .price(new Money(ProductTestConstant.PRICE))
             .categories(List.of(firstCategory, secondCategory))
             .stock(ProductTestConstant.WRONG_STOCK)
             .build();
@@ -88,7 +96,7 @@ public class ProductObjectFactory {
             .id(ProductTestConstant.WRONG_PRODUCT_ID)
             .name(ProductTestConstant.PRODUCT_NAME)
             .description(ProductTestConstant.PRODUCT_DESCRIPTION)
-            .price(new Money(BigDecimal.valueOf(ProductTestConstant.PRICE)))
+            .price(new Money(ProductTestConstant.PRICE))
             .categories(List.of(firstCategory, secondCategory))
             .stock(ProductTestConstant.STOCK)
             .build();
@@ -114,7 +122,7 @@ public class ProductObjectFactory {
             .id(ProductTestConstant.PRODUCT_ID)
             .name(ProductTestConstant.UPDATED_PRODUCT_NAME)
             .description(ProductTestConstant.UPDATED_PRODUCT_DESCRIPTION)
-            .price(new Money(BigDecimal.valueOf(ProductTestConstant.UPDATED_PRICE)))
+            .price(new Money(ProductTestConstant.UPDATED_PRICE))
             .categories(List.of(new Category(ProductTestConstant.FIRST_CATEGORY_ID, null)))
             .stock(ProductTestConstant.UPDATED_STOCK)
             .build();
@@ -148,7 +156,7 @@ public class ProductObjectFactory {
             .id(ProductTestConstant.PRODUCT_ID)
             .name(ProductTestConstant.UPDATED_PRODUCT_NAME)
             .description(ProductTestConstant.UPDATED_PRODUCT_DESCRIPTION)
-            .price(new Money(BigDecimal.valueOf(ProductTestConstant.WRONG_PRICE)))
+            .price(new Money(ProductTestConstant.WRONG_PRICE))
             .categories(List.of(new Category(ProductTestConstant.FIRST_CATEGORY_ID, null)))
             .stock(ProductTestConstant.UPDATED_STOCK)
             .build();
@@ -166,7 +174,7 @@ public class ProductObjectFactory {
             .id(ProductTestConstant.PRODUCT_ID)
             .name(ProductTestConstant.UPDATED_PRODUCT_NAME)
             .description(ProductTestConstant.UPDATED_PRODUCT_DESCRIPTION)
-            .price(new Money(BigDecimal.valueOf(ProductTestConstant.PRICE)))
+            .price(new Money(ProductTestConstant.PRICE))
             .categories(List.of(new Category(ProductTestConstant.FIRST_CATEGORY_ID, null)))
             .stock(ProductTestConstant.WRONG_STOCK)
             .build();
@@ -188,7 +196,7 @@ public class ProductObjectFactory {
     public static FindProductsByCriteria findProductsByCriteria = FindProductsByCriteria.builder()
             .name(ProductTestConstant.PRODUCT_NAME)
             .categoryId(ProductTestConstant.FIRST_CATEGORY_ID)
-            .minPrice(1.0)
-            .maxPrice(40000.0)
+            .minPrice(new BigDecimal("1"))
+            .maxPrice(new BigDecimal("40000.0"))
             .build();
 }

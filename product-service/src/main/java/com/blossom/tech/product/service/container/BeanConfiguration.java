@@ -16,7 +16,6 @@ import com.blossom.tech.product.service.domain.core.repository.ProductRepository
 import com.blossom.tech.product.service.infrastructure.acl.adapter.ProductRepositoryAdapter;
 import com.blossom.tech.product.service.infrastructure.acl.mapper.ProductDomainMapperAdapter;
 import com.blossom.tech.product.service.infrastructure.acl.mapper.ProductInfrastructureMapper;
-import com.blossom.tech.product.service.infrastructure.acl.mapper.ProductInfrastructureMapperAdapter;
 import com.blossom.tech.product.service.infrastructure.datasource.ProductDatasource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +31,7 @@ public class BeanConfiguration {
 
     @Bean
     public ProductInfrastructureMapper productInfrastructureMapper() {
-        return new ProductInfrastructureMapperAdapter();
+        return ProductInfrastructureMapper.INSTANCE;
     }
 
     @Bean

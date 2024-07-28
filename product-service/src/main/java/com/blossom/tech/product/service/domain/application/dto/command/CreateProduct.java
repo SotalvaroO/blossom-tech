@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @AllArgsConstructor
@@ -15,7 +16,7 @@ import java.util.List;
 public class CreateProduct implements Request<ProductResponse> {
     private final String name;
     private final String description;
-    private final Double price;
+    private final BigDecimal price;
     private final List<CategoryDisplay> categories;
     private final Long stock;
 

@@ -16,7 +16,7 @@ public interface ProductDatasource extends JpaRepository<ProductEntity, UUID> {
 
     @Query("SELECT p FROM ProductEntity p " +
             "LEFT JOIN p.categories c " +
-            "WHERE (:name IS NULL OR p.name LIKE %:name%) " +
+            "WHERE (:name IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :name, '%'))) " +
             "AND (:categoryId IS NULL OR c.id = :categoryId) " +
             "AND (:initialPriceRange IS NULL OR p.price >= :initialPriceRange) " +
             "AND (:finalPriceRange IS NULL OR p.price <= :finalPriceRange)")

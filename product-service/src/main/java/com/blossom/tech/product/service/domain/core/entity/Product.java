@@ -98,7 +98,7 @@ public class Product extends BaseEntity<UUID> {
         name = Optional.ofNullable(product.name).orElse(name);
         description = Optional.ofNullable(product.description).orElse(description);
         categories = Optional.ofNullable(product.categories)
-                .filter(c -> !c.isEmpty())
+                .filter(List::isEmpty)
                 .orElse(categories);
         price = Optional.ofNullable(product.price).orElse(price);
         stock = Optional.ofNullable(product.stock).orElse(stock);

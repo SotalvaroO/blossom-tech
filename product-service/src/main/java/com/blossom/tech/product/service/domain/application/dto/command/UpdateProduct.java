@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,10 +14,14 @@ import java.util.UUID;
 @Builder
 @Getter
 public class UpdateProduct implements Request<ProductResponse> {
-    private final UUID id;
+    private UUID id;
     private final String name;
     private final String description;
     private final List<UUID> categories;
-    private final Double price;
+    private final BigDecimal price;
     private final Long stock;
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 }

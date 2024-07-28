@@ -6,6 +6,7 @@ import com.blossom.tech.product.service.ProductObjectFactory;
 import com.blossom.tech.product.service.domain.ProductDomainTestConfiguration;
 import com.blossom.tech.product.service.domain.application.dto.query.FindProductsByCriteria;
 import com.blossom.tech.product.service.domain.application.dto.response.ProductResponse;
+import com.blossom.tech.product.service.domain.application.dto.response.ProductsResponse;
 import com.blossom.tech.product.service.domain.application.mapper.ProductDomainMapper;
 import com.blossom.tech.product.service.domain.core.entity.Product;
 import com.blossom.tech.product.service.domain.core.repository.ProductRepository;
@@ -42,19 +43,19 @@ public class FindProductsByCriteriaHandlerTest {
     void givenAFindProductsByCriteria_whenAttemptToFindAllByCriteria_thenShouldReturnListOfProductResponse() {
         FindProductsByCriteria findProductsByCriteria = ProductObjectFactory.findProductsByCriteria;
         List<Product> products = Collections.singletonList(ProductObjectFactory.product);
-        List<ProductResponse> expectedResponse = Collections.singletonList(ProductObjectFactory.response);
+        List<ProductsResponse> expectedResponse = Collections.singletonList(ProductObjectFactory.pResponse);
         when(productRepository.findAllByQuery(
                 findProductsByCriteria.getName(),
                 findProductsByCriteria.getCategoryId(),
-                new Money(BigDecimal.valueOf(findProductsByCriteria.getMinPrice())),
-                new Money(BigDecimal.valueOf(findProductsByCriteria.getMaxPrice()))
+                new Money(findProductsByCriteria.getMinPrice()),
+                new Money(findProductsByCriteria.getMaxPrice())
         )).thenReturn(products);
-        when(productDomainMapper.productToProductResponse(any(Product.class)))
+        when(productDomainMapper.productToProductsResponse(any(Product.class)))
                 .thenAnswer(invocation -> {
                     Product product = invocation.getArgument(0);
                     return expectedResponse.get(0);
                 });
-        List<ProductResponse> actualResponse = mediator.send(findProductsByCriteria);
+        List<ProductsResponse> actualResponse = mediator.send(findProductsByCriteria);
         Assertions.assertEquals(expectedResponse, actualResponse);
 
     }
