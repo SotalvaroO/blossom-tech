@@ -14,8 +14,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+@Service
 public class JwtService {
+
     private static final String SECRET_KEY = "6a736499d5c09760d9289a44fafc02d1c2ac0e0a42a31925bd23f102191c6d04";
+
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
