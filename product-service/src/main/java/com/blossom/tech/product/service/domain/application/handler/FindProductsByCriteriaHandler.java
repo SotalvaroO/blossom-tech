@@ -3,14 +3,12 @@ package com.blossom.tech.product.service.domain.application.handler;
 import com.blossom.tech.domain.mediator.RequestHandler;
 import com.blossom.tech.domain.valueobject.Money;
 import com.blossom.tech.product.service.domain.application.dto.query.FindProductsByCriteria;
-import com.blossom.tech.product.service.domain.application.dto.response.ProductResponse;
 import com.blossom.tech.product.service.domain.application.dto.response.ProductsResponse;
 import com.blossom.tech.product.service.domain.application.mapper.ProductDomainMapper;
 import com.blossom.tech.product.service.domain.core.cosntant.ProductDomainConstant;
 import com.blossom.tech.product.service.domain.core.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 

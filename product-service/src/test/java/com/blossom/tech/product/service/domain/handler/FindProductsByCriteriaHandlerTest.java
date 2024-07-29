@@ -5,7 +5,6 @@ import com.blossom.tech.domain.valueobject.Money;
 import com.blossom.tech.product.service.ProductObjectFactory;
 import com.blossom.tech.product.service.domain.ProductDomainTestConfiguration;
 import com.blossom.tech.product.service.domain.application.dto.query.FindProductsByCriteria;
-import com.blossom.tech.product.service.domain.application.dto.response.ProductResponse;
 import com.blossom.tech.product.service.domain.application.dto.response.ProductsResponse;
 import com.blossom.tech.product.service.domain.application.mapper.ProductDomainMapper;
 import com.blossom.tech.product.service.domain.core.entity.Product;
@@ -17,7 +16,6 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 

@@ -2,7 +2,6 @@ package com.blossom.tech.product.service.infrastructure;
 
 import com.blossom.tech.product.service.infrastructure.acl.adapter.ProductRepositoryAdapter;
 import com.blossom.tech.product.service.infrastructure.acl.mapper.ProductInfrastructureMapper;
-import com.blossom.tech.product.service.infrastructure.acl.mapper.ProductInfrastructureMapperImpl;
 import com.blossom.tech.product.service.infrastructure.datasource.ProductDatasource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

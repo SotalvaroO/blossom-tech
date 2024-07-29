@@ -11,9 +11,6 @@ import com.blossom.tech.product.service.domain.application.mapper.ProductDomainM
 import com.blossom.tech.product.service.domain.core.entity.Category;
 import com.blossom.tech.product.service.domain.core.entity.Product;
 
-import java.math.BigDecimal;
-import java.util.stream.Collectors;
-
 public class ProductDomainMapperAdapter implements ProductDomainMapper {
     @Override
     public Product createProductToProduct(CreateProduct createProduct) {

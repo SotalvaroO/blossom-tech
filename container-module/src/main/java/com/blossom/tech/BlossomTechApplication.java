@@ -1,17 +1,15 @@
-package com.blossom.tech.product.service.container;
+package com.blossom.tech;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories(basePackages = {"com.blossom.tech.product.service.infrastructure"})
-@EntityScan(basePackages = {"com.blossom.tech.product.service.infrastructure"})
+@EnableJpaRepositories(basePackages = {"com.blossom.tech.product.service.infrastructure", "com.blossom.tech.user.service"})
+@EntityScan(basePackages = {"com.blossom.tech.product.service.infrastructure", "com.blossom.tech.user.service"})
 @SpringBootApplication(scanBasePackages = "com.blossom.tech")
-public class ProductServiceApplication {
-
+public class BlossomTechApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ProductServiceApplication.class,args);
+        SpringApplication.run(BlossomTechApplication.class, args);
     }
-
 }

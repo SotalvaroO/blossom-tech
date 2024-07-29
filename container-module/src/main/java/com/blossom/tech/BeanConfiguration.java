@@ -1,4 +1,4 @@
-package com.blossom.tech.product.service.container;
+package com.blossom.tech;
 
 import com.blossom.tech.domain.mediator.Mediator;
 import com.blossom.tech.domain.mediator.MediatorImpl;
@@ -17,17 +17,31 @@ import com.blossom.tech.product.service.infrastructure.acl.adapter.ProductReposi
 import com.blossom.tech.product.service.infrastructure.acl.mapper.ProductDomainMapperAdapter;
 import com.blossom.tech.product.service.infrastructure.acl.mapper.ProductInfrastructureMapper;
 import com.blossom.tech.product.service.infrastructure.datasource.ProductDatasource;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.blossom.tech.user.service.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
 public class BeanConfiguration {
-    @Autowired
-    private ProductDatasource productDatasource;
+
+    private final ProductDatasource productDatasource;
+    private final UserRepository userRepository;
+
+    public BeanConfiguration(ProductDatasource productDatasource, UserRepository userRepository) {
+        this.productDatasource = productDatasource;
+        this.userRepository = userRepository;
+    }
 
     @Bean
     public ProductInfrastructureMapper productInfrastructureMapper() {
@@ -77,6 +91,29 @@ public class BeanConfiguration {
     @Bean
     public FindProductsByCriteriaHandler findProductsByCriteriaHandler() {
         return new FindProductsByCriteriaHandler(productRepository(), productDomainMapper());
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return username -> userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     private Map<Class<?>, RequestHandler<?, ?>> getHandlers() {
