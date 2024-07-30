@@ -26,6 +26,7 @@ import com.blossom.tech.product.service.infrastructure.acl.mapper.ProductDomainM
 import com.blossom.tech.product.service.infrastructure.acl.mapper.ProductInfrastructureMapper;
 import com.blossom.tech.product.service.infrastructure.datasource.ProductDatasource;
 import com.blossom.tech.user.service.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -43,16 +44,12 @@ import java.util.Map;
 @Configuration
 public class BeanConfiguration {
 
-    private final ProductDatasource productDatasource;
-    private final OrderDatasource orderDatasource;
-    private final UserRepository userRepository;
-
-
-    public BeanConfiguration(ProductDatasource productDatasource, OrderDatasource orderDatasource, UserRepository userRepository) {
-        this.productDatasource = productDatasource;
-        this.orderDatasource = orderDatasource;
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    private ProductDatasource productDatasource;
+    @Autowired
+    private OrderDatasource orderDatasource;
+    @Autowired
+    private UserRepository userRepository;
 
     @Bean
     public ProductInfrastructureMapper productInfrastructureMapper() {
