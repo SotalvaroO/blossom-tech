@@ -1,28 +1,15 @@
+server:
+  port: 8080
 spring:
-
-  h2:
-    console:
-      enabled: true
-  # ===============================
-  # DB
-  # ===============================
+  application:
+    name: auth-service
   datasource:
-    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
-
-  # ===============================
-  # JPA / HIBERNATE
-  # ===============================
+    url: jdbc:mysql://rocio-durcal.c5o0wi6wm88a.us-east-1.rds.amazonaws.com/rocio-durcal-db
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: admin
+    password: Sabumafu123
   jpa:
     show-sql: true
+  properties:
     hibernate:
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.H2Dialect
-    properties:
-      hibernate:
-        show_sql: true
-        use_sql_comments: false
-        format_sql: false
-    defer-datasource-initialization: true
+      show_sql: true

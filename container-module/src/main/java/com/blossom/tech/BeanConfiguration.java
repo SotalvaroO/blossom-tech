@@ -3,6 +3,14 @@ package com.blossom.tech;
 import com.blossom.tech.domain.mediator.Mediator;
 import com.blossom.tech.domain.mediator.MediatorImpl;
 import com.blossom.tech.domain.mediator.RequestHandler;
+import com.blossom.tech.order.service.domain.application.dto.command.CreateOrder;
+import com.blossom.tech.order.service.domain.application.handler.CreateOrderHandler;
+import com.blossom.tech.order.service.domain.application.mapper.OrderDomainMapper;
+import com.blossom.tech.order.service.domain.core.repository.OrderRepository;
+import com.blossom.tech.order.service.infrastructure.acl.adapter.OrderRepositoryAdapter;
+import com.blossom.tech.order.service.infrastructure.acl.mapper.OrderDomainMapperAdapter;
+import com.blossom.tech.order.service.infrastructure.acl.mapper.OrderInfrastructureMapper;
+import com.blossom.tech.order.service.infrastructure.datasource.OrderDatasource;
 import com.blossom.tech.product.service.domain.application.dto.command.CreateProduct;
 import com.blossom.tech.product.service.domain.application.dto.command.DeleteProductById;
 import com.blossom.tech.product.service.domain.application.dto.command.UpdateProduct;
@@ -36,16 +44,39 @@ import java.util.Map;
 public class BeanConfiguration {
 
     private final ProductDatasource productDatasource;
+    private final OrderDatasource orderDatasource;
     private final UserRepository userRepository;
 
-    public BeanConfiguration(ProductDatasource productDatasource, UserRepository userRepository) {
+
+    public BeanConfiguration(ProductDatasource productDatasource, OrderDatasource orderDatasource, UserRepository userRepository) {
         this.productDatasource = productDatasource;
+        this.orderDatasource = orderDatasource;
         this.userRepository = userRepository;
     }
 
     @Bean
     public ProductInfrastructureMapper productInfrastructureMapper() {
         return ProductInfrastructureMapper.INSTANCE;
+    }
+
+    @Bean
+    public OrderInfrastructureMapper orderInfrastructureMapper() {
+        return OrderInfrastructureMapper.INSTANCE;
+    }
+
+    @Bean
+    public OrderRepository orderRepository() {
+        return new OrderRepositoryAdapter(orderDatasource, orderInfrastructureMapper());
+    }
+
+    @Bean
+    public OrderDomainMapper orderDomainMapper() {
+        return new OrderDomainMapperAdapter();
+    }
+
+    @Bean
+    public CreateOrderHandler createOrderHandler() {
+        return new CreateOrderHandler(orderRepository(), orderDomainMapper(), productRepository());
     }
 
     @Bean
@@ -123,6 +154,7 @@ public class BeanConfiguration {
         handlers.put(UpdateProduct.class, updateProductHandler());
         handlers.put(FindProductById.class, findProductByIdHandler());
         handlers.put(FindProductsByCriteria.class, findProductsByCriteriaHandler());
+        handlers.put(CreateOrder.class, createOrderHandler());
         return handlers;
     }
 }
