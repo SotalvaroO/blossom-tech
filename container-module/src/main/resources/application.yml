@@ -4,10 +4,10 @@ spring:
   application:
     name: auth-service
   datasource:
-    url: jdbc:mysql://rocio-durcal.c5o0wi6wm88a.us-east-1.rds.amazonaws.com/rocio-durcal-db
+    url: ${DB_HOST}
     driverClassName: com.mysql.cj.jdbc.Driver
-    username: admin
-    password: Sabumafu123
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
   jpa:
     show-sql: true
   properties:
