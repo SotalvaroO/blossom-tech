@@ -6,7 +6,7 @@ spring:
   application:
     name: auth-service
   datasource:
-    url: jdbc:mysql://rocio-durcal.c5o0wi6wm88a.us-east-1.rds.amazonaws.com/rocio-durcal-db
+    url: jdbc:mysql://rodolfo-aicardi.c1wae46o69by.us-east-1.rds.amazonaws.com/rodolfo-aicardi-db
     driverClassName: com.mysql.cj.jdbc.Driver
     username: admin
     password: Sabumafu123

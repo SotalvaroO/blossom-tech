@@ -29,6 +29,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorizeHttpRequests) ->
                         authorizeHttpRequests.requestMatchers("/auth/**")
                                 .permitAll()
+                                .requestMatchers("/health-check/**")
+                                .permitAll()
                                 .requestMatchers("/h2-console/**")
                                 .permitAll()
                                 .requestMatchers("/products/**")
