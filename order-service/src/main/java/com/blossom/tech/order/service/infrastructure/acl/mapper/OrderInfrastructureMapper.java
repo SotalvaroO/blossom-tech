@@ -5,7 +5,6 @@ import com.blossom.tech.order.service.domain.core.entity.Order;
 import com.blossom.tech.order.service.domain.core.entity.OrderItem;
 import com.blossom.tech.order.service.infrastructure.entity.OrderEntity;
 import com.blossom.tech.order.service.infrastructure.entity.OrderItemEntity;
-import com.blossom.tech.product.service.infrastructure.acl.mapper.ProductInfrastructureMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

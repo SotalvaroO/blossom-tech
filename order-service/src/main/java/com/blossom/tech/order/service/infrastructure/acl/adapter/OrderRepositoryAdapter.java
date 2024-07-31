@@ -5,7 +5,6 @@ import com.blossom.tech.order.service.domain.core.repository.OrderRepository;
 import com.blossom.tech.order.service.infrastructure.acl.mapper.OrderInfrastructureMapper;
 import com.blossom.tech.order.service.infrastructure.datasource.OrderDatasource;
 import com.blossom.tech.order.service.infrastructure.entity.OrderEntity;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;

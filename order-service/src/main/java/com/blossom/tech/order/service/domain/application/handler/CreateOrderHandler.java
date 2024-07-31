@@ -5,7 +5,6 @@ import com.blossom.tech.order.service.domain.application.dto.command.CreateOrder
 import com.blossom.tech.order.service.domain.application.dto.response.CreateOrderResponse;
 import com.blossom.tech.order.service.domain.application.mapper.OrderDomainMapper;
 import com.blossom.tech.order.service.domain.core.entity.Order;
-import com.blossom.tech.order.service.domain.core.entity.OrderItem;
 import com.blossom.tech.order.service.domain.core.entity.OrderProduct;
 import com.blossom.tech.order.service.domain.core.repository.OrderRepository;
 import com.blossom.tech.product.service.domain.core.cosntant.ProductDomainConstant;

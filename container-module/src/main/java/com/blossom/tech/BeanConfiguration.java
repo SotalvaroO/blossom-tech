@@ -4,7 +4,9 @@ import com.blossom.tech.domain.mediator.Mediator;
 import com.blossom.tech.domain.mediator.MediatorImpl;
 import com.blossom.tech.domain.mediator.RequestHandler;
 import com.blossom.tech.order.service.domain.application.dto.command.CreateOrder;
+import com.blossom.tech.order.service.domain.application.dto.query.FindHistoryByUserId;
 import com.blossom.tech.order.service.domain.application.handler.CreateOrderHandler;
+import com.blossom.tech.order.service.domain.application.handler.FindHistoryByUserIdHandler;
 import com.blossom.tech.order.service.domain.application.mapper.OrderDomainMapper;
 import com.blossom.tech.order.service.domain.core.repository.OrderRepository;
 import com.blossom.tech.order.service.infrastructure.acl.adapter.OrderRepositoryAdapter;
@@ -64,6 +66,11 @@ public class BeanConfiguration {
     @Bean
     public OrderRepository orderRepository() {
         return new OrderRepositoryAdapter(orderDatasource, orderInfrastructureMapper());
+    }
+
+    @Bean
+    public FindHistoryByUserIdHandler findHistoryByUserIdHandler() {
+        return new FindHistoryByUserIdHandler(orderRepository(), orderDomainMapper());
     }
 
     @Bean
@@ -152,6 +159,7 @@ public class BeanConfiguration {
         handlers.put(FindProductById.class, findProductByIdHandler());
         handlers.put(FindProductsByCriteria.class, findProductsByCriteriaHandler());
         handlers.put(CreateOrder.class, createOrderHandler());
+        handlers.put(FindHistoryByUserId.class, findHistoryByUserIdHandler());
         return handlers;
     }
 }
