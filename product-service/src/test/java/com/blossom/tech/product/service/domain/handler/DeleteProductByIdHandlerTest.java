@@ -43,6 +43,7 @@ public class DeleteProductByIdHandlerTest {
         DeleteProductById deleteProduct = ProductObjectFactory.deleteProductById;
         Product product = ProductObjectFactory.product;
         ProductResponse expectedProductResponse = ProductObjectFactory.response;
+        when(productRepository.findById(deleteProduct.getId())).thenReturn(Optional.of(product));
         when(productRepository.deleteById(deleteProduct.getId())).thenReturn(Optional.of(product));
         when(productDomainMapper.productToProductResponse(product)).thenReturn(expectedProductResponse);
         //Act
