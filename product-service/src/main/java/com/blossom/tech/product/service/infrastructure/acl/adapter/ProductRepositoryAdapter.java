@@ -69,8 +69,7 @@ public class ProductRepositoryAdapter implements ProductRepository {
 
     @Override
     public Optional<Product> deleteById(UUID id) {
-        Optional<ProductEntity> productEntity = productDatasource.findById(id);
-        productEntity.ifPresent(productDatasource::delete);
-        return productEntity.map(productInfrastructureMapper::toDomainEntity);
+        productDatasource.deleteById(id);
+        return Optional.empty();
     }
 }

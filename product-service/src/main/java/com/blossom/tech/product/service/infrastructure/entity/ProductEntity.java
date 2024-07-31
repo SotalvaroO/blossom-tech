@@ -19,7 +19,7 @@ public class ProductEntity {
     private UUID id;
     private String name;
     private String description;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "tbl_product_category",
             joinColumns = @JoinColumn(name = "product_id"),

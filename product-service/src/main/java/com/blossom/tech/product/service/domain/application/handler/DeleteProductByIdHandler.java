@@ -23,12 +23,12 @@ public class DeleteProductByIdHandler implements RequestHandler<DeleteProductByI
 
     @Override
     public ProductResponse handle(DeleteProductById request) {
-        Product deletedProduct = productRepository.deleteById(request.getId())
-                .orElseThrow(() -> {
-                    log.error(String.format(String.format(ProductDomainConstant.PRODUCT_NOT_FOUND, request.getId())));
-                    return new ProductNotFoundException(String.format(ProductDomainConstant.PRODUCT_NOT_FOUND, request.getId()));
-                });
-        log.info(String.format(ProductDomainConstant.PRODUCT_SUCCESSFULLY_DELETED, deletedProduct.getId()));
-        return productDomainMapper.productToProductResponse(deletedProduct);
+        Product foundProduct = productRepository.findById(request.getId()).orElseThrow(() -> {
+            log.error(String.format(String.format(ProductDomainConstant.PRODUCT_NOT_FOUND, request.getId())));
+            return new ProductNotFoundException(String.format(ProductDomainConstant.PRODUCT_NOT_FOUND, request.getId()));
+        });
+        productRepository.deleteById(request.getId());
+        log.info(String.format(ProductDomainConstant.PRODUCT_SUCCESSFULLY_DELETED, foundProduct.getId()));
+        return productDomainMapper.productToProductResponse(foundProduct);
     }
 }
