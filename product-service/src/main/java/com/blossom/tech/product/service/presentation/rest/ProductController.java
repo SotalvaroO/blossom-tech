@@ -4,7 +4,9 @@ import com.blossom.tech.domain.mediator.Mediator;
 import com.blossom.tech.product.service.domain.application.dto.command.CreateProduct;
 import com.blossom.tech.product.service.domain.application.dto.command.DeleteProductById;
 import com.blossom.tech.product.service.domain.application.dto.command.UpdateProduct;
+import com.blossom.tech.product.service.domain.application.dto.query.FindProductById;
 import com.blossom.tech.product.service.domain.application.dto.query.FindProductsByCriteria;
+import com.blossom.tech.product.service.domain.application.dto.response.ProductDetailResponse;
 import com.blossom.tech.product.service.domain.application.dto.response.ProductResponse;
 import com.blossom.tech.product.service.domain.application.dto.response.ProductsResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +46,11 @@ public class ProductController {
         );
         log.info("Returning products by criteria");
         return ResponseEntity.ok(queriedProducts);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDetailResponse> findProductById(@PathVariable("id") UUID id) {
+        return ResponseEntity.ok(mediator.send(FindProductById.builder().id(id).build()));
     }
 
     @PostMapping
